@@ -7,7 +7,7 @@ architectures on the resulting split, and the evaluation that produced the table
 paper. Trained weights are hosted on Zenodo rather than here, because GitHub rejects files above
 100 MB and two of the checkpoints are around 198 MB.
 
-TODO: add the paper title and the DOI once the revised version is accepted.
+The manuscript is under review. Its title and DOI will be added here once it is published.
 
 ## Layout
 
@@ -22,7 +22,8 @@ splits/
   clean_test_mask.npy      test images with no near-duplicate in training
 results/
   dedup_report.json        all duplicate-detection counts
-  tables/                  CSV versions of the tables in the paper
+  tables/                  the tables in the paper as CSV, with a README describing each
+  figures/                 figures as produced by the notebooks, at 300 dpi
 ```
 
 ## Data
@@ -162,7 +163,15 @@ between architectures are within what a different seed could produce.
 
 ## Citation
 
-TODO: add the BibTeX entry once the paper is published.
+The paper is still under review. Until it appears, please cite the Zenodo deposit:
+
+```
+Loarte Lujerio, R. P., Quispe Villegas, E. G., & Mori Yzaguirre, D. E. (2026).
+Trained models and data splits for foliar disease classification on Niayes Crops
+Disease V2 [Data set]. Zenodo. https://doi.org/10.5281/zenodo.24222910
+```
+
+A BibTeX entry for the paper will be added here once it is published.
 
 ## License
 
