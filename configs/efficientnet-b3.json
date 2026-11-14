@@ -1,0 +1,300 @@
+{
+  "variante": "efficientnet_b3",
+  "backbone_timm": "efficientnet_b3.ra2_in1k",
+  "usa_cbam": false,
+  "num_features": 1536,
+  "parametros": 10754636,
+  "datos": {
+    "dataset": "Niayes Crops Disease V2",
+    "train_original": 59152,
+    "train_congelado": 21504,
+    "val": 12666,
+    "test": 12705,
+    "num_classes": 36,
+    "class_names": [
+      "Bell_pepper__Bell_pepper_Bacterial_spot",
+      "Bell_pepper__Bell_pepper_Healthy",
+      "Brinjal__Diseased_Brinjal_Leaf_-_Cercospora_Leaf_Spot",
+      "Brinjal__Fresh_Brinjal_Leaf",
+      "Cabbage__Alternaria_Leaf_Spot",
+      "Cabbage__Bacterial_spot_rot",
+      "Cabbage__Black_Rot",
+      "Cabbage__Cabbage_aphid_colony",
+      "Cabbage__Downy_Mildew",
+      "Cabbage__Healthy",
+      "Cabbage__club_root",
+      "Cabbage__ring_spot",
+      "Citrus__Citrus_Black_spot",
+      "Citrus__Citrus_Healthy",
+      "Citrus__Citrus_canker",
+      "Citrus__Citrus_greening",
+      "Corn__Corn_Common_rust",
+      "Corn__Corn_Gray_leaf_spot",
+      "Corn__Corn_Healthy",
+      "Corn__Corn_Northern_Leaf_Blight",
+      "Lettuce__Bacterial",
+      "Lettuce__fungal",
+      "Lettuce__healthy",
+      "Potato__Potato_Early_blight",
+      "Potato__Potato_Healthy",
+      "Potato__Potato_Late_blight",
+      "Tomato__Tomato_Bacterial_spot",
+      "Tomato__Tomato_Early_blight",
+      "Tomato__Tomato_Healthy",
+      "Tomato__Tomato_Late_blight",
+      "Tomato__Tomato_Leaf_Mold",
+      "Tomato__Tomato_Mosaic_virus",
+      "Tomato__Tomato_Septoria_leaf_spot",
+      "Tomato__Tomato_Spider_mites",
+      "Tomato__Tomato_Target_Spot",
+      "Tomato__Tomato_Yellow_Leaf_Curl_Virus"
+    ],
+    "imagenes_por_clase_train": [
+      338,
+      1031,
+      537,
+      553,
+      82,
+      111,
+      43,
+      95,
+      113,
+      98,
+      88,
+      92,
+      120,
+      29,
+      146,
+      3886,
+      474,
+      611,
+      388,
+      416,
+      164,
+      196,
+      353,
+      372,
+      460,
+      383,
+      1088,
+      355,
+      1043,
+      932,
+      343,
+      677,
+      891,
+      774,
+      950,
+      3272
+    ],
+    "particion_congelada": "keep_indices_train.npy (Fase 0)",
+    "particion_sha256_16": "918155abacc0323d"
+  },
+  "entrada": {
+    "resize": 256,
+    "center_crop": 224,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "aumento_datos": {
+    "random_zoom_out": {
+      "p": 0.2,
+      "side_range": [
+        1.0,
+        1.8
+      ]
+    },
+    "random_resized_crop": {
+      "scale": [
+        0.3,
+        1.0
+      ],
+      "size": 224
+    },
+    "horizontal_flip_p": 0.5,
+    "vertical_flip_p": 0.2,
+    "rotation": {
+      "p": 0.5,
+      "grados": 30
+    },
+    "perspective": {
+      "p": 0.2,
+      "distortion_scale": 0.2
+    },
+    "color_jitter": {
+      "p": 0.8,
+      "brightness": 0.4,
+      "contrast": 0.4,
+      "saturation": 0.3,
+      "hue": 0.05
+    },
+    "grayscale_p": 0.05,
+    "gaussian_blur": {
+      "p": 0.3,
+      "kernel": 9,
+      "sigma": [
+        0.1,
+        3.0
+      ]
+    },
+    "jpeg": {
+      "p": 0.3,
+      "quality": [
+        30,
+        95
+      ]
+    },
+    "random_erasing": {
+      "p": 0.25,
+      "scale": [
+        0.02,
+        0.2
+      ],
+      "ratio": [
+        0.3,
+        3.3
+      ],
+      "value": 0
+    }
+  },
+  "mezcla_lotes": {
+    "mixup_alpha": 0.2,
+    "cutmix_alpha": 1.0,
+    "prob": 0.8,
+    "switch_prob": 0.5,
+    "mode": "batch",
+    "desactivado_ultimas_epocas": 5
+  },
+  "semillas": {
+    "global": 42,
+    "generador_dataloader": 42,
+    "worker_init_fn": "derivada de torch.initial_seed()"
+  },
+  "desbalance": {
+    "estrategia": "WeightedRandomSampler",
+    "peso": "1 / n^0.5",
+    "replacement": true,
+    "num_samples": 21504,
+    "perdida_ponderada_por_clase": false
+  },
+  "optimizacion": {
+    "optimizador": "AdamW",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "lr_backbone": 0.0001,
+    "lr_head": 0.001,
+    "weight_decay": 0.05,
+    "sin_decay_en": "normalizacion y sesgos",
+    "scheduler": "warmup lineal + coseno, actualizado por batch",
+    "warmup_epochs": 1,
+    "min_lr_ratio": 0.01,
+    "label_smoothing": 0.1,
+    "grad_clip": 1.0,
+    "batch_size": 64,
+    "epochs_max": 30,
+    "early_stopping": {
+      "metrica": "val macro-F1",
+      "patience": 8
+    },
+    "ema_decay": 0.9998,
+    "amp": true,
+    "dropout": 0.3,
+    "drop_path": 0.2,
+    "busqueda_de_hiperparametros": "ninguna; misma receta para las 6 arquitecturas"
+  },
+  "resultado": {
+    "mejor_epoca": 30,
+    "epocas_ejecutadas": 30,
+    "val_macro_f1": 0.9657641251462805,
+    "test_accuracy": 0.9832349419593811,
+    "test_macro_f1": 0.9699763813320084,
+    "train_limpio_accuracy": 0.9948846697807312,
+    "train_limpio_macro_f1": 0.993250210459299,
+    "train_acc_con_mixup_no_comparable": 0.9791201636904762,
+    "minutos_entrenamiento": 78.5,
+    "segundos_por_epoca": [
+      382.3,
+      162.6,
+      148.0,
+      142.1,
+      141.7,
+      140.7,
+      140.4,
+      140.4,
+      141.4,
+      145.4,
+      142.6,
+      142.2,
+      141.5,
+      143.7,
+      148.7,
+      151.9,
+      151.8,
+      150.1,
+      149.5,
+      150.7,
+      151.2,
+      149.4,
+      150.1,
+      148.8,
+      151.3,
+      151.6,
+      151.9,
+      157.4,
+      161.4,
+      161.5
+    ],
+    "latencia": {
+      "media_ms": 14.261824040022475,
+      "p50_ms": 14.132107500245183,
+      "p95_ms": 15.214712050101296,
+      "por_imagen_ms": 14.261824040022475,
+      "imagenes_por_s": 70.11725829695654,
+      "tamano_mb": 43.545297,
+      "por_lote": {
+        "1": {
+          "media_ms": 16.10620965997441,
+          "p50_ms": 15.674208999826078,
+          "p95_ms": 20.26943030032271,
+          "por_imagen_ms": 16.10620965997441,
+          "imagenes_por_s": 62.087854381102645
+        },
+        "8": {
+          "media_ms": 19.356757400000788,
+          "p50_ms": 19.44821199958824,
+          "p95_ms": 19.64062740025838,
+          "por_imagen_ms": 2.4195946750000985,
+          "imagenes_por_s": 413.2923626970535
+        },
+        "32": {
+          "media_ms": 80.55501053997432,
+          "p50_ms": 80.70764649983175,
+          "p95_ms": 81.82836624964693,
+          "por_imagen_ms": 2.5173440793741975,
+          "imagenes_por_s": 397.24406694876467
+        }
+      },
+      "gflops": 1.922455072
+    }
+  },
+  "entorno": {
+    "gpu": "Tesla T4",
+    "gpu_memoria_total_gb": 15.6,
+    "gpu_memoria_pico_gb": 5.82,
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "timm": "1.0.30",
+    "cuda": "13.0",
+    "semilla": 42
+  }
+}
