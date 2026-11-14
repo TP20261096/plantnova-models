@@ -70,14 +70,13 @@ Everything ran on Kaggle notebooks with a single NVIDIA Tesla T4. Exact versions
 
 | | |
 | --- | --- |
-| GPU | NVIDIA Tesla T4 |
-| GPU memory | 15.6 |
-| Peak GPU memory in training | 7.43 |
+| GPU | NVIDIA Tesla T4, 15.6 GB |
+| Peak GPU memory in training | 7.43 GB (varies by architecture; see each config) |
 | Python | 3.13.16 |
 | PyTorch | 2.11.0+cu130 |
 | torchvision | 0.26.0+cu130 |
 | timm | 1.0.30 |
-| CUDA | 13.0" |
+| CUDA | 13.0 |
 | Random seed | 42 |
 
 Training one model takes between 69 and 111 minutes on a T4, depending on the architecture.
@@ -138,7 +137,7 @@ than the quality of the data.
 
 ## Weights
 
-On Zenodo: TODO add DOI and link.
+On Zenodo: https://doi.org/10.5281/zenodo.24222910
 
 Six checkpoints, one per architecture, as PyTorch `state_dict` files. Load them with the model
 definition in `01_training.ipynb` — the classifier head is a `LayerNorm`, a `Dropout` and a `Linear`

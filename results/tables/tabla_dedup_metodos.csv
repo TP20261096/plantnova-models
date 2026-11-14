@@ -1,0 +1,4 @@
+Método,Pares detectados,Respaldados por embedding,Solo hash,% solo hash,"De esos, etiqueta distinta",% etiqueta distinta
+dHash diedral exacto,28108,27462,646,0.022982780703002702,141,0.21826625386996903
+dHash diedral ≤3 (v1),52170,30296,21874,0.4192831129001342,12157,0.5557739782390052
+Embeddings (coseno ≥ 0.98),31831,31831,0,0.0,187,

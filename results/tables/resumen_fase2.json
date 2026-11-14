@@ -1,0 +1,50 @@
+{
+  "variantes_evaluadas": [
+    "convnext_small_cbam",
+    "convnext_small_plain",
+    "resnet50",
+    "efficientnet_b3",
+    "swin_tiny",
+    "mobilenetv3_large"
+  ],
+  "n_test": 12705,
+  "n_test_sin_fuga": 4079,
+  "ablacion_cbam": {
+    "accuracy_cbam": 0.9866194411648957,
+    "accuracy_sin_cbam": 0.9878787878787879,
+    "macro_f1_cbam": 0.9776484732243892,
+    "macro_f1_sin_cbam": 0.9763562733982359,
+    "diferencia_accuracy": -0.0012593467138921684,
+    "ic95": [
+      -0.0025862221253081744,
+      6.752869752383781e-05
+    ],
+    "b": 29,
+    "c": 45,
+    "prueba": "McNemar (χ², corregida)",
+    "estadistico": 3.0405405405405403,
+    "p": 0.08120887152819893,
+    "macro_f1_dif": 0.0013662264444988296,
+    "macro_f1_ic95": [
+      -0.002163675532399917,
+      0.004899980405884446
+    ],
+    "macro_f1_p": 0.465,
+    "sin_fuga": {
+      "n": 4079,
+      "p": 0.25614496660352326,
+      "dif_accuracy": -0.001961265015935278,
+      "ic95": [
+        -0.004922661155137732,
+        0.0010001311232671756
+      ]
+    }
+  },
+  "temperatura": 0.6847056150436401,
+  "ece_sin_calibrar": 0.053668907076747006,
+  "ece_calibrado": 0.004072507489645568,
+  "macro_f1_ic95": [
+    0.9688985707864476,
+    0.9842054059648211
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "version": "fase0-v2",
+  "metodo_principal": {
+    "tipo": "embeddings autosupervisados",
+    "modelo": "vit_small_patch14_dinov2.lvd142m",
+    "coseno_min": 0.98,
+    "orientaciones_en_train": 8,
+    "pares_revisados": [
+      "train-val",
+      "train-test",
+      "train-train"
+    ]
+  },
+  "metodo_diagnostico": {
+    "tipo": "dHash canónico diedral de 64 bits",
+    "umbral_exacto": 0,
+    "umbral_v1": 3,
+    "nota": "Descartado como detector: produce falsos positivos sobre imágenes de fondo uniforme. Canonizar por el mínimo de 8 orientaciones reduce la entropía efectiva del hash."
+  },
+  "train": {
+    "original": 59152,
+    "descartadas_por_fuga": 23532,
+    "descartadas_internas": 14116,
+    "congelado": 21504
+  },
+  "val": {
+    "total": 12666,
+    "con_duplicado_en_train": 8607
+  },
+  "test": {
+    "total": 12705,
+    "con_duplicado_en_train": 8626,
+    "sin_fuga": 4079
+  },
+  "comparacion_metodos": [
+    {
+      "Método": "dHash diedral exacto",
+      "Pares detectados": 28108,
+      "Respaldados por embedding": 27462,
+      "Solo hash": 646,
+      "% solo hash": 0.022982780703002702,
+      "De esos, etiqueta distinta": 141,
+      "% etiqueta distinta": 0.21826625386996903
+    },
+    {
+      "Método": "dHash diedral ≤3 (v1)",
+      "Pares detectados": 52170,
+      "Respaldados por embedding": 30296,
+      "Solo hash": 21874,
+      "% solo hash": 0.4192831129001342,
+      "De esos, etiqueta distinta": 12157,
+      "% etiqueta distinta": 0.5557739782390052
+    },
+    {
+      "Método": "Embeddings (coseno ≥ 0.98)",
+      "Pares detectados": 31831,
+      "Respaldados por embedding": 31831,
+      "Solo hash": 0,
+      "% solo hash": 0.0,
+      "De esos, etiqueta distinta": 187,
+      "% etiqueta distinta": NaN
+    }
+  ],
+  "barrido_umbral": [
+    {
+      "Umbral": 0.95,
+      "Val marcadas": 8607,
+      "% val": 0.6795357650402652,
+      "Test marcadas": 8626,
+      "% test": 0.6789452971271153,
+      "Train implicadas": 23532
+    },
+    {
+      "Umbral": 0.96,
+      "Val marcadas": 8607,
+      "% val": 0.6795357650402652,
+      "Test marcadas": 8626,
+      "% test": 0.6789452971271153,
+      "Train implicadas": 23532
+    },
+    {
+      "Umbral": 0.97,
+      "Val marcadas": 8607,
+      "% val": 0.6795357650402652,
+      "Test marcadas": 8626,
+      "% test": 0.6789452971271153,
+      "Train implicadas": 23532
+    },
+    {
+      "Umbral": 0.98,
+      "Val marcadas": 8607,
+      "% val": 0.6795357650402652,
+      "Test marcadas": 8626,
+      "% test": 0.6789452971271153,
+      "Train implicadas": 23532
+    },
+    {
+      "Umbral": 0.99,
+      "Val marcadas": 8289,
+      "% val": 0.6544291804831833,
+      "Test marcadas": 8309,
+      "% test": 0.6539944903581267,
+      "Train implicadas": 22307
+    },
+    {
+      "Umbral": 0.995,
+      "Val marcadas": 8109,
+      "% val": 0.6402179062055897,
+      "Test marcadas": 8131,
+      "% test": 0.6399842581660764,
+      "Train implicadas": 21508
+    },
+    {
+      "Umbral": 0.999,
+      "Val marcadas": 8012,
+      "% val": 0.6325596084004421,
+      "Test marcadas": 8025,
+      "% test": 0.6316410861865407,
+      "Train implicadas": 21018
+    }
+  ],
+  "pares_totales": 31831,
+  "pares_etiqueta_contradictoria": 187,
+  "particion_sha256_16": "918155abacc0323d",
+  "clases": [
+    "Bell_pepper__Bell_pepper_Bacterial_spot",
+    "Bell_pepper__Bell_pepper_Healthy",
+    "Brinjal__Diseased_Brinjal_Leaf_-_Cercospora_Leaf_Spot",
+    "Brinjal__Fresh_Brinjal_Leaf",
+    "Cabbage__Alternaria_Leaf_Spot",
+    "Cabbage__Bacterial_spot_rot",
+    "Cabbage__Black_Rot",
+    "Cabbage__Cabbage_aphid_colony",
+    "Cabbage__Downy_Mildew",
+    "Cabbage__Healthy",
+    "Cabbage__club_root",
+    "Cabbage__ring_spot",
+    "Citrus__Citrus_Black_spot",
+    "Citrus__Citrus_Healthy",
+    "Citrus__Citrus_canker",
+    "Citrus__Citrus_greening",
+    "Corn__Corn_Common_rust",
+    "Corn__Corn_Gray_leaf_spot",
+    "Corn__Corn_Healthy",
+    "Corn__Corn_Northern_Leaf_Blight",
+    "Lettuce__Bacterial",
+    "Lettuce__fungal",
+    "Lettuce__healthy",
+    "Potato__Potato_Early_blight",
+    "Potato__Potato_Healthy",
+    "Potato__Potato_Late_blight",
+    "Tomato__Tomato_Bacterial_spot",
+    "Tomato__Tomato_Early_blight",
+    "Tomato__Tomato_Healthy",
+    "Tomato__Tomato_Late_blight",
+    "Tomato__Tomato_Leaf_Mold",
+    "Tomato__Tomato_Mosaic_virus",
+    "Tomato__Tomato_Septoria_leaf_spot",
+    "Tomato__Tomato_Spider_mites",
+    "Tomato__Tomato_Target_Spot",
+    "Tomato__Tomato_Yellow_Leaf_Curl_Virus"
+  ],
+  "semilla": 42
+}
